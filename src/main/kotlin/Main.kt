@@ -1,11 +1,11 @@
-import kotlinx.serialization.json.Json
 import modes.Seller
 import modes.createAppSeller
-import program.data.UpdateAppSellerOptions
 import program.data.getAppSeller
 import program.data.updateAppSeller
+import java.io.File
 
 fun main() {
+    init()
     println("Opening Marketplace...")
     // An infinite loop is needed to implement switching modes without restarting the program
     while (true) {
@@ -91,4 +91,29 @@ fun sellerMode() {
 
 fun customerMode() {
     println("To be built!")
+}
+
+fun init() {
+    // Create the appdata and imported_sellers directories if they don't exist
+    fun createRequiredDir(dirName: String) {
+        val dir = File(dirName)
+        println("Checking if $dirName directory exists...")
+        try {
+            if (!dir.exists()) {
+                println("No $dirName directory exists. Attempting to create...")
+                if (dir.mkdir()) {
+                    println("Created $dirName directory.")
+                } else {
+                    println("Failed to create $dirName directory.")
+                }
+            } else {
+                println("$dirName directory exists.")
+            }
+        } catch (ex: Exception) {
+            println("Failed to create $dirName directory: ${ex.message}.")
+        }
+        println()
+    }
+    createRequiredDir("appdata")
+    createRequiredDir("imported_sellers")
 }
