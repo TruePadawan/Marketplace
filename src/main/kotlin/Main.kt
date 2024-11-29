@@ -46,15 +46,15 @@ fun main() {
 fun sellerMode() {
 //     Check the appdata folder for a seller.marketplace file and parse it
 //     Else create a default seller
+    var seller: Seller? = getAppSeller()
     while (true) {
-        var seller: Seller? = getAppSeller()
         if (seller == null) {
-            // createAppSeller should throw an exception if an error occurs
             println("No seller found. Create a new seller.")
             seller = createAppSeller()
+            updateAppSeller(seller)
         }
         // Show seller menu
-        println("Welcome ${seller.name}")
+        println("\nWelcome ${seller.name}")
         println("1. Update seller's name\n2. Register product\n3. Add product to inventory\n4. Exit seller mode")
         var choice: Int? = null
         var choiceIsValid = false
