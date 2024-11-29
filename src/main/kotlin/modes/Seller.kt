@@ -8,6 +8,7 @@ import java.util.UUID
 class Seller(
     var name: String,
     val sellerId: String = UUID.randomUUID().toString(),
+    var lastUpdated: String = LocalDateTime.now().toString(),
 ) {
     fun registerProduct(productName: String, productPrice: Double) = true
     fun addProductToInventory(productId: String) = true
