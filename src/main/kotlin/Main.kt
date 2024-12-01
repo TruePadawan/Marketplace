@@ -75,16 +75,24 @@ fun sellerMode() {
 
         if (choice == 1) {
             var updatedSellerName: String? = null
-            while (updatedSellerName == null) {
-                print("Enter a name: ")
+            var nameIsInvalid = true
+            var cancelNameChange = false
+
+            while (nameIsInvalid) {
+                print("Enter a name (Enter -1 to go back): ")
                 updatedSellerName = readlnOrNull()?.trim()
-                val nameIsInvalid = updatedSellerName == null || updatedSellerName.length < 2
+                nameIsInvalid = updatedSellerName == null || updatedSellerName.length < 2
+                cancelNameChange = updatedSellerName == "-1"
+                if (cancelNameChange) break
                 if (nameIsInvalid) {
                     println("Invalid name. Name must have a length greater than 2\n")
                 }
             }
-            seller.name = updatedSellerName
-            updateAppSeller(seller)
+
+            if (!cancelNameChange && updatedSellerName != null) {
+                seller.name = updatedSellerName
+                updateAppSeller(seller)
+            }
         }
     }
 }
