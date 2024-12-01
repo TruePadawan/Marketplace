@@ -1,6 +1,7 @@
 package modes
 
 import kotlinx.serialization.Serializable
+import product.Product
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -9,6 +10,7 @@ class Seller(
     var name: String,
     val sellerId: String = UUID.randomUUID().toString(),
     var lastUpdated: String = LocalDateTime.now().toString(),
+    var products: List<Product> = listOf<Product>()
 ) {
     fun registerProduct(productName: String, productPrice: Double) = true
     fun addProductToInventory(productId: String) = true
