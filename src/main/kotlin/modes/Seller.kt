@@ -10,10 +10,23 @@ class Seller(
     var name: String,
     val sellerId: String = UUID.randomUUID().toString(),
     var lastUpdated: String = LocalDateTime.now().toString(),
-    var products: List<Product> = listOf<Product>()
+    var products: MutableList<Product> = mutableListOf<Product>()
 ) {
-    fun registerProduct(productName: String, productPrice: Double) = true
-    fun addProductToInventory(productId: String) = true
+    fun registerProduct(productName: String, productPrice: Double): Boolean {
+        val product = Product(name = productName, price = productPrice, sellerId = this.sellerId)
+        return products.add(product)
+    }
+
+    fun unregisterProduct(productId: String) = products.removeIf { it.productId == productId }
+
+    fun addProductToInventory(productId: String) {
+        products.first() { it.productId == productId }.isInInventory = true
+    }
+
+    fun removeProductFromInventory(productId: String) {
+        products.first() { it.productId == productId }.isInInventory = false
+    }
+
     fun exportSellerData() = true
 }
 
