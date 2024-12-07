@@ -55,7 +55,7 @@ fun sellerMode() {
         }
         // Show seller menu
         println("\nWelcome ${seller.name}")
-        println("1. Update seller's name\n2. Register product\n3. Add product to inventory\n4. Exit seller mode")
+        println("1. Update seller's name\n2. Product registration\n3. Manage inventory\n4. Exit seller mode")
         var choice: Int? = null
         var choiceIsValid = false
 
