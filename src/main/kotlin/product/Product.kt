@@ -5,7 +5,7 @@ import java.util.UUID
 
 @Serializable
 data class Product(
-    val productId: String = UUID.randomUUID().toString(),
+    val id: String = UUID.randomUUID().toString(),
     var name: String,
     val price: Double,
     var amount: Int = 0,
