@@ -43,3 +43,7 @@ fun createAppSeller(): Seller {
     }
     return Seller(name = sellerName!!)
 }
+
+const val REGISTER_A_PRODUCT = 1
+const val DELIST_A_PRODUCT = 2
+const val EXIT_PRODUCT_REGISTRATION = 3

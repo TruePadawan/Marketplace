@@ -1,3 +1,4 @@
+import modes.EXIT_PRODUCT_REGISTRATION
 import modes.Seller
 import modes.createAppSeller
 import program.data.getAppSeller
@@ -30,7 +31,7 @@ fun main() {
         }
         when (selectedMode) {
             1 -> {
-                println("Entering Seller mode...\n")
+                println("Entering Seller mode...")
                 sellerMode()
             }
 
@@ -92,6 +93,26 @@ fun sellerMode() {
             if (!cancelNameChange && updatedSellerName != null) {
                 seller.name = updatedSellerName
                 updateAppSeller(seller)
+            }
+        }
+
+        if (choice == 2) {
+            println("\nProduct Registration")
+            println("1. Register a product\n2. Delist a product\n3. Exit product registration")
+            var subMenuChoice: Int? = null
+            var subMenuChoiceIsValid = false
+
+            while (!subMenuChoiceIsValid) {
+                print("What would you like to do? ")
+                subMenuChoice = readlnOrNull()?.trim()?.toIntOrNull()
+                subMenuChoiceIsValid = subMenuChoice != null && subMenuChoice in 1..3
+                if (!subMenuChoiceIsValid) {
+                    println("Invalid choice. Available choices: 1, 2, 3")
+                }
+            }
+
+            if (subMenuChoice == EXIT_PRODUCT_REGISTRATION) {
+                println("Exiting product registration...")
             }
         }
     }
