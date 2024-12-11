@@ -1,4 +1,5 @@
-import modes.EXIT_PRODUCT_REGISTRATION
+import modes.PRODUCT_REGISTRATION_MENU_OPTIONS
+import modes.SELLER_MENU_OPTIONS
 import modes.Seller
 import modes.createAppSeller
 import program.data.getAppSeller
@@ -68,13 +69,11 @@ fun sellerMode() {
                 println("Invalid choice. Available choices: 1, 2, 3, 4")
             }
         }
-
-        if (choice == 4) {
+        if (choice == SELLER_MENU_OPTIONS["EXIT_SELLER_MODE"]) {
             println("\nLeaving Seller mode...")
             break
         }
-
-        if (choice == 1) {
+        if (choice == SELLER_MENU_OPTIONS["UPDATE_SELLER_NAME"]) {
             var updatedSellerName: String? = null
             var nameIsInvalid = true
             var cancelNameChange = false
@@ -95,8 +94,7 @@ fun sellerMode() {
                 updateAppSeller(seller)
             }
         }
-
-        if (choice == 2) {
+        if (choice == SELLER_MENU_OPTIONS["PRODUCT_REGISTRATION"]) {
             println("\nProduct Registration")
             println("1. Register a product\n2. Delist a product\n3. Exit product registration")
             var subMenuChoice: Int? = null
@@ -111,8 +109,14 @@ fun sellerMode() {
                 }
             }
 
-            if (subMenuChoice == EXIT_PRODUCT_REGISTRATION) {
+            if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["EXIT_PRODUCT_REGISTRATION"]) {
                 println("Exiting product registration...")
+            }
+            if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["REGISTER_A_PRODUCT"]) {
+                println("Register a product")
+            }
+            if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["DELIST_A_PRODUCT"]) {
+                println("Delist a product")
             }
         }
     }

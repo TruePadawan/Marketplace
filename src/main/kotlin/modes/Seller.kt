@@ -44,6 +44,17 @@ fun createAppSeller(): Seller {
     return Seller(name = sellerName!!)
 }
 
-const val REGISTER_A_PRODUCT = 1
-const val DELIST_A_PRODUCT = 2
-const val EXIT_PRODUCT_REGISTRATION = 3
+// Seller menu options
+val SELLER_MENU_OPTIONS = mapOf(
+    "UPDATE_SELLER_NAME" to 1,
+    "PRODUCT_REGISTRATION" to 2,
+    "INVENTORY_MANAGEMENT" to 3,
+    "EXIT_SELLER_MODE" to 4
+)
+
+// Product Registration sub-menu options
+val PRODUCT_REGISTRATION_MENU_OPTIONS = mapOf(
+    "REGISTER_A_PRODUCT" to 1,
+    "DELIST_A_PRODUCT" to 2,
+    "EXIT_PRODUCT_REGISTRATION" to 3,
+)
