@@ -72,8 +72,7 @@ fun sellerMode() {
         if (choice == SELLER_MENU_OPTIONS["EXIT_SELLER_MODE"]) {
             println("\nLeaving Seller mode...")
             break
-        }
-        if (choice == SELLER_MENU_OPTIONS["UPDATE_SELLER_NAME"]) {
+        } else if (choice == SELLER_MENU_OPTIONS["UPDATE_SELLER_NAME"]) {
             var updatedSellerName: String? = null
             var nameIsInvalid = true
             var cancelNameChange = false
@@ -93,21 +92,21 @@ fun sellerMode() {
                 seller.name = updatedSellerName
                 updateAppSeller(seller)
             }
-        }
-        if (choice == SELLER_MENU_OPTIONS["PRODUCT_REGISTRATION"]) {
-            println("\nProduct Registration")
-            println("1. Register a product\n2. Delist a product\n3. Exit product registration")
-            var subMenuChoice: Int? = null
-            var subMenuChoiceIsValid = false
+        } else if (choice == SELLER_MENU_OPTIONS["PRODUCT_REGISTRATION"]) {
+            while (true) {
+                println("\nProduct Registration")
+                println("1. Register a product\n2. Delist a product\n3. Exit product registration")
+                var subMenuChoice: Int? = null
+                var subMenuChoiceIsValid = false
 
-            while (!subMenuChoiceIsValid) {
-                print("What would you like to do? ")
-                subMenuChoice = readlnOrNull()?.trim()?.toIntOrNull()
-                subMenuChoiceIsValid = subMenuChoice != null && subMenuChoice in 1..3
-                if (!subMenuChoiceIsValid) {
-                    println("Invalid choice. Available choices: 1, 2, 3")
+                while (!subMenuChoiceIsValid) {
+                    print("What would you like to do? ")
+                    subMenuChoice = readlnOrNull()?.trim()?.toIntOrNull()
+                    subMenuChoiceIsValid = subMenuChoice != null && subMenuChoice in 1..3
+                    if (!subMenuChoiceIsValid) {
+                        println("Invalid choice. Available choices: 1, 2, 3")
+                    }
                 }
-            }
 
             if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["EXIT_PRODUCT_REGISTRATION"]) {
                 println("Exiting product registration...")
