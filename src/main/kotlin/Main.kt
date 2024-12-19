@@ -108,14 +108,34 @@ fun sellerMode() {
                     }
                 }
 
-            if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["EXIT_PRODUCT_REGISTRATION"]) {
-                println("Exiting product registration...")
-            }
-            if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["REGISTER_A_PRODUCT"]) {
-                println("Register a product")
-            }
-            if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["DELIST_A_PRODUCT"]) {
-                println("Delist a product")
+                if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["EXIT_PRODUCT_REGISTRATION"]) {
+                    println("Exiting product registration...")
+                    break
+                } else if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["REGISTER_A_PRODUCT"]) {
+                    var productDataIsValid = false
+                    var productName: String? = null
+                    var productPrice: Double? = null
+
+                    while (!productDataIsValid) {
+                        print("What is the name of the product? ")
+                        productName = readlnOrNull()?.trim()
+                        print("How much will it cost in naira? (Input a number) ")
+                        productPrice = readlnOrNull()?.trim()?.toDoubleOrNull()
+
+                        val nameIsValid = productName != null && productName.length > 2
+                        val priceIsValid = productPrice != null && productPrice > 0
+
+                        productDataIsValid = nameIsValid && priceIsValid
+                    }
+
+                    val successful = seller.registerProduct(productName!!, productPrice!!)
+                    if (successful) {
+                        println("Successfully registered ${productName}!")
+                        updateAppSeller(seller)
+                    } else println("Failed to register product!")
+                } else if (subMenuChoice == PRODUCT_REGISTRATION_MENU_OPTIONS["DELIST_A_PRODUCT"]) {
+                    println("Delist a product")
+                }
             }
         }
     }
